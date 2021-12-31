@@ -87,6 +87,7 @@
                                 <option>Wordpress</option>
                                 <option>Shopify</option>
                                 <option>Magento</option>
+                                <option>BigCommerce</option>
                             </select>
                         </div>
                     </div>
