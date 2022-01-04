@@ -3,13 +3,13 @@
 namespace App\Imports;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithUpserts;
-
-
 
 //using upsert working but with heading row not working
 class ProductImport implements ToCollection, WithHeadingRow
@@ -21,11 +21,9 @@ class ProductImport implements ToCollection, WithHeadingRow
      */
     public function collection(Collection $rows)
     {
-
         foreach ($rows as $value){
-            //print_r($value['description']);
             {
-                Product::updateOrCreate(
+                $products=Product::updateOrCreate(
                     [
                         'sku' => $value['sku'],
 
@@ -71,10 +69,18 @@ class ProductImport implements ToCollection, WithHeadingRow
                         'image8' => $value['image8'],
                         'image9' => $value['image9'],
                         'image10' => $value['image10'],
-
-
+                        'domain_id'=>1
                     ]
                 );
+
+//                $collection = collect($products);
+////                print_r($collection);
+//                $collection->each(function ($item, $key) {
+//                    //
+//                    print_r($key);
+//                    DB::insert('insert into product (domain_id) values(?)',[1]);
+//
+//                });
             }
 
         }
@@ -88,13 +94,6 @@ class ProductImport implements ToCollection, WithHeadingRow
     }
 }
 
-
-
-
-
-//Using model
-//class DartxtestImport implements ToModel,WithHeadingRow
-//{
 //    /**
 //    * @param array $row
 //    *

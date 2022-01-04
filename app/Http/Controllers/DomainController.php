@@ -17,10 +17,10 @@ class DomainController extends Controller
     public function index()
     {
         //
+        $domaindata=Domain::all();
+//        return $domaindata;
 
-        $domaindata = DB::select ('select * from domain');
-//        return view('import-form-dartxtest',['domaindata'=>$domaindata]);
-        return view('import-form-dartxtest', compact('domaindata'));
+        return view('import-form-product', ['domains'=>$domaindata]);
 
     }
 

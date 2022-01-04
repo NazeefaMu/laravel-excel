@@ -10,6 +10,12 @@ use mysql_xdevapi\Table;
 class Product extends Model
 {
     use HasFactory;
+
+//    public static function create(string $string)
+//    {
+//        $records= DB::table('product')->insert('domain_id')
+//    }
+
     public function Domain(){
         return $this->belongsTo(Domain::class);
     }

@@ -33,7 +33,16 @@
                     <div class="alert alert-success">
                         {{ session()->get('message') }}
                     </div>
-                @endif
+            @endif
+
+{{--                @if(isset(Auth::user()->email))--}}
+{{--                    <div class="alert alert-success">--}}
+{{--                        Successfully logged in--}}
+{{--                    </div>--}}
+{{--                    else--}}
+{{--                    <script>window.location="/import-form-product";</script>--}}
+{{--                    @endif--}}
+
             </div>
         </div>
         <br>
@@ -55,16 +64,9 @@
                             <br>
                             <div class="form-group">
                                 <label for="name">Domain</label>
-                                <select class="form-control">
-{{--                                    <option>Wordpress</option>--}}
-{{--                                    <option>Shopify</option>--}}
-{{--                                    <option>Magento</option>--}}
-                                    <option>www.maxxus.com.auau</option>--}}
-                                    <option>www.urbanclassics.com.au</option>
-
-{{--                                    @foreach($domaindata as $domain)--}}
-{{--                                        <option value="{{$domain->id}}">{{$domain->domain_name}}</option>--}}
-{{--                                    @endforeach--}}
+                                <select class="form-control" name="select_domain">
+                                    <option value="1">www.maxxus.com.auau</option>
+                                    <option value="2">www.urbanclassics.com.au</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Upload excel</button>
