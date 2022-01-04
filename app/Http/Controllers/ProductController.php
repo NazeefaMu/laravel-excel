@@ -24,8 +24,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $productdata = DB::select ('select * from product');
-        return view('import-form-product', ['productdata'=>$productdata]);
+
     }
 
     /**
@@ -95,7 +94,8 @@ class ProductController extends Controller
     }
     public function importFormDartxtest(){
         $domaindata=Domain::all();
-        return view('import-form-product', ['domains'=>$domaindata]);
+        $productdata = DB::select ('select * from product');
+        return view('import-form-product')->with(['productdata'=>$productdata,'domains'=>$domaindata]);
     }
 
     public function importDartxtest(Request $request){
