@@ -26,6 +26,7 @@
         <div class="row">
             <div align="center" class="col-md-9 offset-md-3">
                 <h3 style="font-weight: bolder;">EXCEL MANAGEMENT SYSTEM</h3>
+
             </div>
         </div>
         <br>

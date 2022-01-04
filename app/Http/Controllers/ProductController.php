@@ -21,17 +21,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
         $productdata = DB::select ('select * from product');
         return view('import-form-product', ['productdata'=>$productdata]);
-    }
-    public function getDomains()
-    {
-        //
-        $domaindata=Domain::all();
-        return view('import-form-product', ['domains'=>$domaindata]);
     }
 
     /**
@@ -100,8 +94,10 @@ class ProductController extends Controller
         //
     }
     public function importFormDartxtest(){
-        return view('import-form-product');
+        $domaindata=Domain::all();
+        return view('import-form-product', ['domains'=>$domaindata]);
     }
+
     public function importDartxtest(Request $request){
         $dom=$request->input('select_domain');
         $excelResult=Excel::import(new ProductImport,$request->file);

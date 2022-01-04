@@ -65,9 +65,12 @@
                             <div class="form-group">
                                 <label for="name">Domain</label>
                                 <select class="form-control" name="select_domain">
-                                    <option value="1">www.maxxus.com.auau</option>
-                                    <option value="2">www.urbanclassics.com.au</option>
+                                @foreach($domains as $domain)
+                                    <option value='{{ $domain->id }}'>{{ $domain->domain_name }}</option>
+                                @endforeach
                                 </select>
+{{--                                <option value="1">www.maxxus.com.auau</option>--}}
+{{--                                <option value="2">www.urbanclassics.com.au</option>--}}
                             </div>
                             <button type="submit" class="btn btn-primary">Upload excel</button>
                         </form>
