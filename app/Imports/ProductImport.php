@@ -69,18 +69,9 @@ class ProductImport implements ToCollection, WithHeadingRow
                         'image8' => $value['image8'],
                         'image9' => $value['image9'],
                         'image10' => $value['image10'],
-                        'domain_id'=>1
                     ]
                 );
 
-//                $collection = collect($products);
-////                print_r($collection);
-//                $collection->each(function ($item, $key) {
-//                    //
-//                    print_r($key);
-//                    DB::insert('insert into product (domain_id) values(?)',[1]);
-//
-//                });
             }
 
         }

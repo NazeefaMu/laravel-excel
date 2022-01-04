@@ -100,15 +100,21 @@ class ProductController extends Controller
 
     public function importDartxtest(Request $request){
         $dom=$request->input('select_domain');
-        $excelResult=Excel::import(new ProductImport,$request->file);
+        $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
         $data = Excel::toArray(new ProductImport, $request->file)[0];
 
-        foreach ($data as $dataItem) {
+        foreach ($data as $dataItem) {//get values in excel sheet
             $collection = collect($dataItem);
-            $final=$collection->put('domain_id', $dom);
-            print_r($final);
+            Product::updateOrCreate(//create or update domain_id for each iteration and sku
+                [
+                    'sku' => $collection['sku'],
+                ],
+                [
+                    'domain_id' => $dom,
+                ]
+            );
         }
-        //return redirect()->back()->with('message', 'Records are imported successfully!');
+        return redirect()->back()->with('message', 'Records are imported successfully!');
 
     }
     public function exportIntoExcel(){

@@ -24,14 +24,14 @@
     <div class="container">
 
         <div class="row">
-            <div align="center" class="col-md-9 offset-md-3">
+            <div align="center" class="col-md-7 offset-md-5">
                 <h3 style="font-weight: bolder;">EXCEL MANAGEMENT SYSTEM</h3>
 
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-md-9 offset-md-3">
+            <div class="col-md-7 offset-md-5">
 
 {{--                @if(isset(Auth::user()->email))--}}
 {{--                <script>window.location="/import-form-product"</script>--}}
@@ -58,9 +58,8 @@
 
 
         <div class="row">
-            <div class="col-md-9 offset-md-3">
+            <div class="col-md-7 offset-md-5">
                 <div class="card">
-
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data" action="{{url('/main/checklogin')}}">
                             @csrf

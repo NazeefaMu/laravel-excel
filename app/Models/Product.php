@@ -24,13 +24,15 @@ class Product extends Model
     protected $fillable = ['id','sku','description','colour','size','group_name','bar_code','in_stock','b2c','brand','product_type'
     ,'categories','hort_description','weight','price','special_price','meta_title','meta_keywords','meta_description','new_to_date',
         'display_product_options_in','country_of_manufacture','qty','vendor','tags','option1_name','option1_value','option2_name',
-        'option2_value','option3_name','option3_value','barcode','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10'];
+        'option2_value','option3_name','option3_value','barcode','image1','image2','image3','image4','image5','image6','image7',
+        'image8','image9','image10','domain_id'];
 
     public static function getDartxtest(){
         $records= DB::table('product')->select('id','sku','description','colour','size','group_name','bar_code','in_stock','b2c','brand','product_type'
             ,'categories','hort_description','weight','price','special_price','meta_title','meta_keywords','meta_description','new_to_date',
             'display_product_options_in','country_of_manufacture','qty','vendor','tags','option1_name','option1_value','option2_name',
-            'option2_value','option3_name','option3_value','barcode','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10')->get()->toArray();
+            'option2_value','option3_name','option3_value','barcode','image1','image2','image3','image4','image5','image6','image7',
+            'image8','image9','image10','domain_id')->get()->toArray();
         return $records;
     }
 

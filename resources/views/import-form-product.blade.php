@@ -69,8 +69,6 @@
                                     <option value='{{ $domain->id }}'>{{ $domain->domain_name }}</option>
                                 @endforeach
                                 </select>
-{{--                                <option value="1">www.maxxus.com.auau</option>--}}
-{{--                                <option value="2">www.urbanclassics.com.au</option>--}}
                             </div>
                             <button type="submit" class="btn btn-primary">Upload excel</button>
                         </form>
