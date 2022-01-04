@@ -104,16 +104,11 @@ class ProductController extends Controller
         $data = Excel::toArray(new ProductImport, $request->file)[0];
 
         foreach ($data as $dataItem) {
-            print_r($dataItem['sku']);
-            $update = \DB::table('product') ->where('domain_id', $dataItem['sku']) ->update( [ 'domain_id' => 1 ]);
-            $collection = collect($data);
-//            print_r($collection);
-            $collection->each(function ($item, $key) {
-                //print_r($key);
-                //DB::insert('insert into product (domain_id) values(?)',[1]);
-            });
+            $collection = collect($dataItem);
+            $final=$collection->put('domain_id', $dom);
+            print_r($final);
         }
-        return redirect()->back()->with('message', 'Records are imported successfully!');
+        //return redirect()->back()->with('message', 'Records are imported successfully!');
 
     }
     public function exportIntoExcel(){
