@@ -20,7 +20,6 @@
 
 <section style="padding-top: 60px">
     <div class="container">
-
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <h4 style="font-weight: bold">Import Excel to System</h4>
@@ -55,7 +54,7 @@
                         Import
                     </div>
                     <div class="card-body">
-                        <form method="post" enctype="multipart/form-data" action="{{route('dartxtest.import')}}">
+                        <form method="post" enctype="multipart/form-data" action="{{route('product.import')}}">
                             @csrf
                             <div class="form-group" >
                                 <label for="file">Choose Excel</label>
@@ -81,26 +80,37 @@
             <div class="col-md-10 offset-md-1">
                 <hr>
                 <div class="row">
-                    <div class="col-md-3">
-                        <h4 style="font-weight: bold">Choose export option : </h4>
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold">Choose export option and Domain: </h4>
                     </div>
-                    <div class="col-md-5" >
+                    <form method="post" enctype="multipart/form-data" action="{{route('product.export')}}">
+                        @csrf
+                    <div class="col-md-4" >
                         <div class="form-group">
-                            <select class="form-control">
-                                <option>Wordpress</option>
-                                <option>Shopify</option>
-                                <option>Magento</option>
-                                <option>BigCommerce</option>
+                            <select class="form-control" name="select_framework">
+                                <option value="1">Wordpress</option>
+                                <option value="2">Shopify</option>
+                                <option value="3">Magento</option>
+                                <option value="4">BigCommerce</option>
                             </select>
                         </div>
                     </div>
+                        <div class="col-md-4" >
+                            <div class="form-group">
+                                <select class="form-control" name="select_domain_export">
+                                    @foreach($domains as $domain)
+                                        <option value='{{ $domain->id }}'>{{ $domain->domain_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     <div class="col-md-2">
-                        <a href="export-excel" class="btn btn-success"  onClick="window.location.reload();">Export Excel</a>
+                        <button type="submit" class="btn btn-success">Export Excel</button>
                     </div>
                     <div class="col-md-2">
-                        <a href="export-csv" class="btn btn-primary"  onClick="window.location.reload();">Export CSV</a>
+                        <button type="submit" class="btn btn-primary">Export CSV</button>
                     </div>
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -140,6 +150,7 @@
             </div>
         </div>
 
+        </form>
 
     </div>
 

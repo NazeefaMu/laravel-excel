@@ -92,13 +92,13 @@ class ProductController extends Controller
     {
         //
     }
-    public function importFormDartxtest(){
+    public function importFormProducts(){
         $domaindata=Domain::all();
         $productdata = DB::select ('select * from product');
         return view('import-form-product')->with(['productdata'=>$productdata,'domains'=>$domaindata]);
     }
 
-    public function importDartxtest(Request $request){
+    public function importProducts(Request $request){
         $dom=$request->input('select_domain');
         $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
         $data = Excel::toArray(new ProductImport, $request->file)[0];
@@ -117,13 +117,28 @@ class ProductController extends Controller
         return redirect()->back()->with('message', 'Records are imported successfully!');
 
     }
-    public function exportIntoExcel(){
-        Session::flash('message','Exported into Excel successfully');
-        return Excel::download(new productExport,'dartxlist.xlsx');
-
+    public function exportIntoExcel(Request $request){
+        $framework=$request->input('select_framework');
+        //Session::flash('message','Exported into Excel successfully');
+        switch ($framework){
+            case "1";
+                return Excel::download(new productExport,'WordpressProducts.xlsx');
+                break;
+            case "2";
+                return Excel::download(new productExport,'ShopifyProducts.xlsx');
+                break;
+            case "3";
+                return Excel::download(new productExport,'MagentoProducts.xlsx');
+                break;
+            case "4";
+                return Excel::download(new productExport,'BigCommerceProducts.xlsx');
+                break;
+        }
+        //return Excel::download(new productExport,'productlist.xlsx');
     }
-    public function exportIntoCSV(){
+    public function exportIntoCSV(Request $request){
+        $dom1=$request->input('select_framework');
         Session::flash('message','Exported into CSV successfully');
-        return Excel::download(new productExport,'dartxlist.csv');
+        return Excel::download(new productExport,'productlist.csv');
     }
 }

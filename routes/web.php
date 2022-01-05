@@ -23,12 +23,13 @@ Route::get('/import-form',[\App\Http\Controllers\EmployeeController::class,'impo
 Route::post('/import',[\App\Http\Controllers\EmployeeController::class,'import'])->name('employee.import');
 Route::get('/import-form',[\App\Http\Controllers\EmployeeController::class,'index']);
 
-Route::get('/import-form-product',[\App\Http\Controllers\ProductController::class,'importFormDartxtest']);//main page
-Route::post('/import-product',[\App\Http\Controllers\ProductController::class,'importDartxtest'])->name('dartxtest.import');//import file
-//Route::get('/import-form-product',[\App\Http\Controllers\ProductController::class,'index']);//get all data but could not get data in dropdown from database,
-//issue:cannot create one route with 2 get methods
+Route::get('/import-form-product',[\App\Http\Controllers\ProductController::class,'importFormProducts']);//main page
+//import file and send data to blade via view method
+Route::post('/import-product',[\App\Http\Controllers\ProductController::class,'importProducts'])->name('product.import');
 Route::get('/export-excel',[\App\Http\Controllers\ProductController::class,'exportIntoExcel']);
+Route::post('/export-excel',[\App\Http\Controllers\ProductController::class,'exportIntoExcel'])->name('product.export');
 Route::get('/export-csv',[\App\Http\Controllers\ProductController::class,'exportIntoCSV']);
+
 
 //login
 Route::get('/main',[App\Http\Controllers\MainController::class,'index']);
