@@ -5,8 +5,10 @@ namespace App\Exports;
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMappedCells;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class MagentoExport implements FromCollection,WithHeadings
+class MagentoExport implements FromCollection,WithHeadings,WithMapping
 {
 
     private $domain_id;
@@ -39,13 +41,102 @@ class MagentoExport implements FromCollection,WithHeadings
     public function collection()
     {
         $collection=collect(Product::getProducts($this->domain_id));
-            foreach ($collection as $row){
-                ([
-                    'sku'=>$row->sku,
-                    'name'=>$row->group_name,
-                    'description'=>$row->description,
-                ]);
-            }
+
         return  $collection;
+    }
+
+    public function map($row): array
+    {
+        return [
+            $row->sku,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->categories,
+            $row->product_type,
+            $row->group_name,
+            $row->description,
+            $row->short_description,
+            $row->weight,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->price,
+            $row->special_price,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->meta_title,
+            $row->meta_keywords,
+            $row->meta_description,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->created_at,
+            $row->updated_at,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->qty,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->is_in_stock,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+
+        ];
     }
 }

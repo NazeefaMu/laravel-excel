@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BigcommerceExport;
 use App\Exports\MagentoExport;
+use App\Exports\ShopifyExport;
+use App\Exports\WoocommerceExport;
 use App\Imports\ProductImport;
 use App\Models\Domain;
 use App\Models\Product;
@@ -128,13 +131,13 @@ class ProductController extends Controller
                 return Excel::download(new MagentoExport($domain),'MagentoProducts.csv');
                 break;
             case "2";
-                return Excel::download(new MagentoExport($domain),'WoocommerceProducts.csv');
+                return Excel::download(new WoocommerceExport($domain),'WoocommerceProducts.csv');
                 break;
             case "3";
-                return Excel::download(new MagentoExport($domain),'ShopifyProducts.csv');
+                return Excel::download(new ShopifyExport($domain),'ShopifyProducts.csv');
                 break;
             case "4";
-                return Excel::download(new MagentoExport($domain),'BigCommerceProducts.csv');
+                return Excel::download(new BigcommerceExport($domain),'BigCommerceProducts.csv');
                 break;
         }
         //return Excel::download(new productExport,'productlist.xlsx');
