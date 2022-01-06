@@ -88,9 +88,9 @@
                     <div class="col-md-4" >
                         <div class="form-group">
                             <select class="form-control" name="select_framework">
-                                <option value="1">Wordpress</option>
-                                <option value="2">Shopify</option>
-                                <option value="3">Magento</option>
+                                <option value="1">Magento</option>
+                                <option value="2">Woocommerce</option>
+                                <option value="3">Shopify</option>
                                 <option value="4">BigCommerce</option>
                             </select>
                         </div>
@@ -141,7 +141,7 @@
                             <td>{{ $product->size }}</td>
                             <td>{{ $product->group_name }}</td>
                             <td>{{ $product->bar_code }}</td>
-                            <td>{{ $product->in_stock }}</td>
+                            <td>{{ $product->is_in_stock }}</td>
                             <td>{{ $product->b2c }}</td>
                             <td>{{ $product->brand }}</td>
                         </tr>

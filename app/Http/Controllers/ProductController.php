@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MagentoExport;
 use App\Imports\ProductImport;
 use App\Models\Domain;
 use App\Models\Product;
@@ -120,18 +121,20 @@ class ProductController extends Controller
     public function exportIntoExcel(Request $request){
         $framework=$request->input('select_framework');
         //Session::flash('message','Exported into Excel successfully');
+        $domain=$request->input('select_domain_export');
+
         switch ($framework){
             case "1";
-                return Excel::download(new productExport,'WordpressProducts.xlsx');
+                return Excel::download(new MagentoExport($domain),'MagentoProducts.csv');
                 break;
             case "2";
-                return Excel::download(new productExport,'ShopifyProducts.xlsx');
+                return Excel::download(new MagentoExport($domain),'WoocommerceProducts.csv');
                 break;
             case "3";
-                return Excel::download(new productExport,'MagentoProducts.xlsx');
+                return Excel::download(new MagentoExport($domain),'ShopifyProducts.csv');
                 break;
             case "4";
-                return Excel::download(new productExport,'BigCommerceProducts.xlsx');
+                return Excel::download(new MagentoExport($domain),'BigCommerceProducts.csv');
                 break;
         }
         //return Excel::download(new productExport,'productlist.xlsx');

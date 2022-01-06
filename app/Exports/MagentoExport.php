@@ -6,21 +6,16 @@ use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class productExport implements FromCollection,WithHeadings
+class MagentoExport implements FromCollection,WithHeadings
 {
+
+    private $domain_id;
+
+    function __construct($domain_id) {
+        $this->domain_id = $domain_id;
+    }
     public  function  headings():array{
         return [
-//            'id',
-//            'sku',
-//            'description',
-//            'colour',
-//            'size',
-//            'group_name',
-//            'bar_code',
-//            'in_stock',
-//            'b2c',
-//            'brand',
-
             'sku','store_view_code','attribute_set_code','product_type','categories','product_websites','name','description','short_description',
             'weight','product_online','tax_class_name','visibility','price','special_price','special_price_from_date','special_price_to_date',
             'url_key','meta_title','meta_keywords','meta_description','base_image','base_image_label','small_image','small_image_label',
@@ -35,17 +30,22 @@ class productExport implements FromCollection,WithHeadings
             'upsell_position','additional_images','additional_image_labels','hide_from_product_page','custom_options','bundle_price_type',
             'bundle_sku_type','bundle_price_view','bundle_weight_type','bundle_values','bundle_shipment_type','associated_skus',
             'downloadable_links','downloadable_samples','configurable_variations','configurable_variation_labels'
-
-
         ];
     }
-
 
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return  collect(Product::getMagentoProducts());
+        $collection=collect(Product::getProducts($this->domain_id));
+            foreach ($collection as $row){
+                ([
+                    'sku'=>$row->sku,
+                    'name'=>$row->group_name,
+                    'description'=>$row->description,
+                ]);
+            }
+        return  $collection;
     }
 }
