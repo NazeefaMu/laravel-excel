@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class WoocommerceExport implements FromCollection,WithHeadings
+class WoocommerceExport implements FromCollection,WithHeadings,WithMapping
 {
     private $domain_id;
 
@@ -60,5 +61,39 @@ class WoocommerceExport implements FromCollection,WithHeadings
     {
         $collection=collect(Product::getProducts($this->domain_id));
         return  $collection;
+    }
+
+    public function map($row): array
+    {
+        return [
+            $row->product_type,
+            $row->product_type,
+            $row->sku,
+            $row->group_name,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->short_description,
+            $row->description,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->is_in_stock,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->weight,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->price,
+            $row->categories,
+            $row->tags,
+            $row->image1,
+          //rest fields are null
+        ];
     }
 }

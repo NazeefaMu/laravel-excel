@@ -69,13 +69,14 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload excel</button>
+                            <br>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span>&nbsp&nbspUpload excel</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br>
+        <br><br>
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <hr>
@@ -104,12 +105,10 @@
                                 </select>
                             </div>
                         </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-success">Export Excel</button>
+                    <div class="col-md-4" align="right">
+                        <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-download-alt"></span>&nbsp &nbspExport CSV</button>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Export CSV</button>
-                    </div>
+
                     </form>
                 </div>
             </div>

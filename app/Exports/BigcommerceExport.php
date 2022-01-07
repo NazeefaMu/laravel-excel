@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class BigcommerceExport implements FromCollection,WithHeadings
+class BigcommerceExport implements FromCollection,WithHeadings,WithMapping
 {
     private $domain_id;
 
@@ -15,20 +16,18 @@ class BigcommerceExport implements FromCollection,WithHeadings
     }
     public  function  headings():array{
         return [
-            'sku','store_view_code','attribute_set_code','product_type','categories','product_websites','name','description','short_description',
-            'weight','product_online','tax_class_name','visibility','price','special_price','special_price_from_date','special_price_to_date',
-            'url_key','meta_title','meta_keywords','meta_description','base_image','base_image_label','small_image','small_image_label',
-            'thumbnail_image','thumbnail_image_label','swatch_image','swatch_image_label','created_at','updated_at','new_from_date','new_to_date',
-            'display_product_options_in','map_price','msrp_price','map_enabled','gift_message_available','custom_design',
-            'custom_design_from','custom_design_to','custom_layout_update','page_layout','product_options_container',
-            'msrp_display_actual_price_type','country_of_manufacture','additional_attributes','qty','out_of_stock_qty',
-            'use_config_min_qty','is_qty_decimal','allow_backorders','use_config_backorders','min_cart_qty','use_config_min_sale_qty',
-            'max_cart_qty','use_config_max_sale_qty','is_in_stock','notify_on_stock_below','use_config_notify_stock_qty','manage_stock',
-            'use_config_manage_stock','use_config_qty_increments','qty_increments','use_config_enable_qty_inc','enable_qty_increments',
-            'is_decimal_divided','website_id','related_skus','related_position','crosssell_skus','crosssell_position','upsell_skus',
-            'upsell_position','additional_images','additional_image_labels','hide_from_product_page','custom_options','bundle_price_type',
-            'bundle_sku_type','bundle_price_view','bundle_weight_type','bundle_values','bundle_shipment_type','associated_skus',
-            'downloadable_links','downloadable_samples','configurable_variations','configurable_variation_labels'
+            'Item Type','Product ID','Product Name','Product Type','Product Code/SKU','Bin Picking Number','Brand Name',
+            'Option Set','Option Set Align','Product Description','Price','Cost Price','Retail Price','Sale Price','Fixed Shipping Cost',
+            'Free Shipping','Product Warranty','Product Weight','Product Width','Product Height','Product Depth','Allow Purchases?',
+            'Product Visible?','Product Availability','Track Inventory','Current Stock Level','Low Stock Level','Category',
+            'Product Image ID - 1','Product Image File - 1','Product Image Description - 1','Product Image Is Thumbnail - 1',
+            'Product Image Sort - 1','Product Image ID - 2','Product Image File - 2','Product Image Description - 2',
+            'Product Image Is Thumbnail - 2','Product Image Sort - 2','Search Keywords','Page Title','Meta Keywords',
+            'Meta Description','MYOB Asset Acct','MYOB Income Acct','MYOB Expense Acct','Product Condition','Show Product Condition?',
+            'Event Date Required?','Event Date Name','Event Date Is Limited?','Event Date Start Date','Event Date End Date','Sort Order',
+           'Product Tax Class','Product UPC/EAN','Stop Processing Rules','Product URL','Redirect Old URL?','GPS Global Trade Item Number',
+            'GPS Manufacturer Part Number','GPS Gender','GPS Age Group','GPS Color','GPS Size','GPS Material','GPS Pattern','GPS Item Group ID',
+            'GPS Category','GPS Enabled'
         ];
     }
     /**
@@ -37,5 +36,40 @@ class BigcommerceExport implements FromCollection,WithHeadings
     public function collection()
     {
         return Product::all();
+    }
+    public function map($row): array
+    {
+        return [
+            $row->product_type,
+            $row->product_type,
+            $row->group_name,
+            $row->product_type,
+            $row->sku,
+            $row->product_type,
+            $row->brand,
+            $row->product_type,
+            $row->product_type,
+            $row->description,
+            $row->price,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->product_type,
+            $row->categories,
+
+
+        ];
     }
 }
