@@ -33,7 +33,8 @@ class ShopifyExport implements FromCollection,WithHeadings,WithMapping
     */
     public function collection()
     {
-        return Product::all();
+        $collection=collect(Product::getProducts($this->domain_id));
+        return  $collection;
     }
     public function map($row): array
     {
