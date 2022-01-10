@@ -24,50 +24,54 @@
     <div class="container">
 
         <div class="row">
-            <div align="center" class="col-md-7 offset-md-5">
+            <div align="center" class="col-md-12">
                 <h3 style="font-weight: bolder;">EXCEL MANAGEMENT SYSTEM</h3>
 
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-md-7 offset-md-5">
+            <div class="col-md-12">
 
 {{--                @if(isset(Auth::user()->email))--}}
 {{--                <script>window.location="/import-form-product"</script>--}}
 {{--                @endif--}}
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                @endif
+                    @if(isset(Auth::user()->email))
+                        <script>window.location="/main/successlogin";</script>
+                    @endif
 
-                @if(count($errors)>0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
 
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
             </div>
         </div>
-        <br>
-
+        <br><br><br>
 
         <div class="row">
-            <div class="col-md-7 offset-md-5">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data" action="{{url('/main/checklogin')}}">
                             @csrf
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="file"><h4 style="font-weight: bold;font-family: Roboto">Enter Email</h4></label>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <input type="email" name="email" class="form-control">
@@ -77,17 +81,17 @@
 
                             <br>
                             <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label for="file"><h4 style="font-weight: bold;font-family: Roboto">Enter Password</h4></label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input type="password" name="password" class="form-control">
                                 </div>
                             </div>
                             </div>
-
+                            <br><br>
                             <div class="row" >
                                 <div class="col-md-12" align="right">
                                     <button type="submit" class="btn btn-primary navbar-btn"><i class="glyphicon glyphicon-log-in"></i>&nbsp&nbspLogin</button>
@@ -98,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3"></div>
         </div>
         <br><br><br>
 

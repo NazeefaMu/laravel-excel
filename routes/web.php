@@ -27,13 +27,15 @@ Route::get('/import-form-product',[\App\Http\Controllers\ProductController::clas
 //import file and send data to blade via view method
 Route::post('/import-product',[\App\Http\Controllers\ProductController::class,'importProducts'])->name('product.import');
 Route::get('/export-excel',[\App\Http\Controllers\ProductController::class,'exportIntoExcel']);
-Route::post('/export-excel',[\App\Http\Controllers\ProductController::class,'exportIntoExcel'])->name('product.export');
-Route::get('/export-csv',[\App\Http\Controllers\ProductController::class,'exportIntoCSV']);
-
+Route::post('/import-form-product',[\App\Http\Controllers\ProductController::class,'exportIntoCSV'])->name('product.export');
 
 //login
 Route::get('/main',[App\Http\Controllers\MainController::class,'index']);
-Route::post('/main/checklogin',[App\Http\Controllers\MainController::class,'checklogin']);
+Route::post('login-successful',[App\Http\Controllers\MainController::class,'checklogin']);
 //Route::get('/import-form-product',[App\Http\Controllers\MainController::class,'successlogin']);
+
+Route::get('/main', [App\Http\Controllers\MainController::class,'index']);
+Route::post('/main/checklogin', [App\Http\Controllers\MainController::class,'checklogin']);
+Route::get('main/successlogin', [App\Http\Controllers\MainController::class,'successlogin']);
 
 

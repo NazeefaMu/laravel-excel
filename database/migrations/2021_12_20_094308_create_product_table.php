@@ -60,6 +60,7 @@ class CreateProductTable extends Migration
             $table->string('image9')->nullable();
             $table->string('image10')->nullable();
             $table->string('brand')->nullable();
+            $table->string('null_column')->nullable();
             $table->timestamps();
 //
         });

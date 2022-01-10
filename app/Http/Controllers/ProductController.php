@@ -109,26 +109,25 @@ class ProductController extends Controller
 
         foreach ($data as $dataItem) {//get values in excel sheet
             $collection = collect($dataItem);
-            Product::updateOrCreate(//create or update domain_id for each iteration and sku
-                [
-                    'sku' => $collection['sku'],
-                ],
-                [
-                    'domain_id' => $dom,
-                ]
-            );
-        }
-        return redirect()->back()->with('message', 'Records are imported successfully!');
-
+                Product::updateOrCreate(//create or update domain_id for each iteration and sku
+                    [
+                        'sku' => $collection['sku'],
+                    ],
+                    [
+                        'domain_id' => $dom,
+                    ]
+                );
+            }
+            return redirect()->back()->with('message', 'Records are imported successfully!');
     }
-    public function exportIntoExcel(Request $request){
+    public function exportIntoCSV(Request $request){
         $framework=$request->input('select_framework');
-        //Session::flash('message','Exported into Excel successfully');
         $domain=$request->input('select_domain_export');
 
         switch ($framework){
             case "1";
                 return Excel::download(new MagentoExport($domain),'MagentoProducts.csv');
+
                 break;
             case "2";
                 return Excel::download(new WoocommerceExport($domain),'WoocommerceProducts.csv');
@@ -140,11 +139,5 @@ class ProductController extends Controller
                 return Excel::download(new BigcommerceExport($domain),'BigCommerceProducts.csv');
                 break;
         }
-        //return Excel::download(new productExport,'productlist.xlsx');
-    }
-    public function exportIntoCSV(Request $request){
-        $dom1=$request->input('select_framework');
-        Session::flash('message','Exported into CSV successfully');
-        return Excel::download(new productExport,'productlist.csv');
     }
 }

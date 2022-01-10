@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class MainController extends Controller
 {
@@ -23,13 +24,13 @@ class MainController extends Controller
         'password'=>$request->get('password'),
         );
         if(Auth::attempt($user_data)){
-//           return redirect('import-form-product');
+            return redirect('main/successlogin');
         }
         else {
             return back()->with('error','Invalid credentials');
         }
     }
     function successlogin(){
-//        return view('import-form-product');
+        return view('successlogin');
     }
 }
