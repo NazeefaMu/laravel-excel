@@ -14,6 +14,7 @@
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
 
 </head>
 <body>
@@ -115,12 +116,11 @@
 
         <div class="row" style="padding-top: 60px" >
             <div class="col-md-10 offset-md-1">
-                <table class="table table-responsive table-striped yajra-datatable" id="dartx_table">
-                    <thead>
-                    <tr style="font-weight: bold">
-                        <td>Id</td>
+                <table class="table table-responsive  yajra-datatable" id="product_table">
+                    <thead class="active">
+                    <tr style="font-weight: bold" class="info">
                         <td>SKU</td>
-                        <td>Item description</td>
+                        <td>Description</td>
                         <td>Colour</td>
                         <td>Size</td>
                         <td>Group name</td>
@@ -128,11 +128,13 @@
                         <td>Stock</td>
                         <td>B2C</td>
                         <td>Brand</td>
+                        <td>Action</td>
+
                     </tr>
                     </thead>
+                    <tbody>
                     @foreach ($productdata as $product)
                         <tr>
-                            <td>{{ $product->id }}</td>
                             <td>{{ $product->sku }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->colour }}</td>
@@ -144,6 +146,7 @@
                             <td>{{ $product->brand }}</td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -156,3 +159,33 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-Token' : $("input[name=_token]").val()
+            }
+        });
+
+        $('#product_table').Tabledit({
+            url:'{{ route("tabledit.action") }}',
+            dataType:"json",
+            columns:{
+                identifier:[0, 'sku'],
+                editable:[[1, 'description'], [2, 'colour'],[3, 'size'],[4, 'group_name'],[5, 'bar_code'],[6, 'is_in_stock'],[7, 'brand']]
+
+            },
+            restoreButton:false,
+            onSuccess:function(data, textStatus, jqXHR)
+            {
+                if(data.action == 'delete')
+                {
+                    $('#'+data.sku).remove();
+                }
+            }
+        });
+
+    });
+</script>

@@ -31,11 +31,15 @@ Route::post('/import-form-product',[\App\Http\Controllers\ProductController::cla
 
 //login
 Route::get('/main',[App\Http\Controllers\MainController::class,'index']);
-Route::post('login-successful',[App\Http\Controllers\MainController::class,'checklogin']);
+Route::post('/login-successful',[App\Http\Controllers\MainController::class,'checklogin']);
 //Route::get('/import-form-product',[App\Http\Controllers\MainController::class,'successlogin']);
 
 Route::get('/main', [App\Http\Controllers\MainController::class,'index']);
 Route::post('/main/checklogin', [App\Http\Controllers\MainController::class,'checklogin']);
-Route::get('main/successlogin', [App\Http\Controllers\MainController::class,'successlogin']);
+Route::get('/main/successlogin', [App\Http\Controllers\MainController::class,'successlogin']);
+
+
+Route::post('/import-form-product/action', [App\Http\Controllers\ProductController::class,'action'])->name('tabledit.action');
+
 
 

@@ -140,4 +140,34 @@ class ProductController extends Controller
                 break;
         }
     }
+    function action(Request $request)
+    {
+        if($request->ajax())
+        {
+            if($request->action == 'edit')
+            {
+
+                $data = array(
+                    'description'	=>	$request->description,
+                    'colour'		=>	$request->colour,
+                    'size'		=>	$request->size,
+                    'group_name'		=>	$request->group_name,
+                    'bar_code'		=>	$request->bar_code,
+                    'is_in_stock'		=>	$request->is_in_stock,
+                    'brand'		=>	$request->brand,
+
+                );
+                DB::table('product')
+                    ->where('sku', $request->sku)
+                    ->update($data);
+            }
+            if($request->action == 'delete')
+            {
+                DB::table('product')
+                    ->where('sku', $request->sku)
+                    ->delete();
+            }
+            return response()->json($request);
+        }
+    }
 }
