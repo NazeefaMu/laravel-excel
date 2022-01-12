@@ -127,6 +127,7 @@
                     <thead class="active">
                     <tr style="font-weight: bold" class="info">
                         <td>SKU</td>
+                        <td>Name</td>
                         <td>Description</td>
                         <td>Colour</td>
                         <td>Size</td>
@@ -143,6 +144,7 @@
                     @foreach ($productdata as $product)
                         <tr>
                             <td>{{ $product->sku }}</td>
+                            <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->colour }}</td>
                             <td>{{ $product->size }}</td>
@@ -197,7 +199,7 @@
             dataType:"json",
             columns:{
                 identifier:[0, 'sku'],
-                editable:[[1, 'description'], [2, 'colour'],[3, 'size'],[4, 'group_name'],[5, 'bar_code'],[6, 'is_in_stock'],[7, 'b2c'],[8, 'brand']]
+                editable:[[1, 'name'],[2, 'description'], [3, 'colour'],[4, 'size'],[5, 'group_name'],[6, 'bar_code'],[7, 'is_in_stock'],[8, 'b2c'],[9, 'brand']]
 
             },
             restoreButton:false,
