@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->id();
             $table->string('sku');
             $table->integer('domain_id')->nullable();
+            $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('colour')->nullable();
             $table->string('size')->nullable();

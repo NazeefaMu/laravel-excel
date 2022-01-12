@@ -16,7 +16,7 @@ class Product extends Model
     }
 
     protected $table ="product";
-    protected $fillable = ['sku','store_view_code','colour','size','bar_code','b2c','brand','attribute_set_code','product_type','categories','product_websites','group_name',
+    protected $fillable = ['sku','name','store_view_code','colour','size','bar_code','b2c','brand','attribute_set_code','product_type','categories','product_websites','group_name',
             'description','short_description','weight','product_online','tax_class_name','visibility','price','special_price','special_price_from_date','special_price_to_date',
             'url_key','meta_title','meta_keywords','meta_description','base_image','base_image_label','small_image','small_image_label',
             'thumbnail_image','thumbnail_image_label','swatch_image','swatch_image_label','created_at','updated_at','new_from_date','new_to_date',
@@ -32,7 +32,7 @@ class Product extends Model
             'downloadable_links','downloadable_samples','configurable_variations','configurable_variation_labels','domain_id','null_column'];
 
     public static function getProducts($domain_id){
-        $records= DB::table('product')->select('sku','description','colour','size','group_name','bar_code','is_in_stock','b2c','brand','product_type'
+        $records= DB::table('product')->select('sku','name','description','colour','size','group_name','bar_code','is_in_stock','b2c','brand','product_type'
             ,'categories','short_description','weight','price','special_price','meta_title','meta_keywords','meta_description','new_to_date',
             'display_product_options_in','country_of_manufacture','qty','vendor','tags','option1_name','option1_value','option2_name',
             'option2_value','option3_name','option3_value','image1','image2','barcode','null_column','created_at','updated_at','domain_id')->where('domain_id','=',$domain_id)->get()->toArray();
