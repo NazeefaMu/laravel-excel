@@ -42,6 +42,17 @@
 {{--                    else--}}
 {{--                    <script>window.location="/import-form-product";</script>--}}
 {{--                @endif--}}
+
+                @if(isset(Auth::user()->email))
+                    <div class="alert alert-danger success-block">
+                        <strong>Welcome {{ Auth::user()->email }}</strong>
+                        <br />
+                        <a href="{{ url('/main/logout') }}">Logout</a>
+                    </div>
+                @else
+                    <script>window.location = "/main";</script>
+                @endif
+
             </div>
         </div>
         <br>
@@ -162,6 +173,22 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        {{--var table = $('.table').DataTable({--}}
+        {{--    processing: true,--}}
+        {{--    serverSide: true,--}}
+        {{--    ajax: "{{ route('tabledit.action') }}",--}}
+        {{--    columns: [--}}
+        {{--        {data: 'sku', name: 'sku'},--}}
+        {{--        {data: 'description', name: 'description'},--}}
+        {{--        {data: 'colour', name: 'colour'},--}}
+        {{--        {data: 'size', name: 'size'},--}}
+        {{--        {data: 'group_name', name: 'group_name'},--}}
+        {{--        {data: 'bar_code', name: 'bar_code'},--}}
+        {{--        {data: 'is_in_stock', name: 'is_in_stock'},--}}
+        {{--        {data: 'b2c', name: 'b2c'},--}}
+        {{--        {data: 'brand', name: 'brand'},--}}
+        {{--    ]--}}
+        {{--});--}}
 
         $.ajaxSetup({
             headers:{
@@ -174,7 +201,7 @@
             dataType:"json",
             columns:{
                 identifier:[0, 'sku'],
-                editable:[[1, 'description'], [2, 'colour'],[3, 'size'],[4, 'group_name'],[5, 'bar_code'],[6, 'is_in_stock'],[7, 'brand']]
+                editable:[[1, 'description'], [2, 'colour'],[3, 'size'],[4, 'group_name'],[5, 'bar_code'],[6, 'is_in_stock'],[7, 'b2c'],[8, 'brand']]
 
             },
             restoreButton:false,

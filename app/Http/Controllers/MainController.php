@@ -33,4 +33,10 @@ class MainController extends Controller
     function successlogin(){
         return view('successlogin');
     }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect('main');
+    }
 }

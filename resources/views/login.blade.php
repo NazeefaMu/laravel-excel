@@ -32,10 +32,6 @@
         <br>
         <div class="row">
             <div class="col-md-12">
-
-{{--                @if(isset(Auth::user()->email))--}}
-{{--                <script>window.location="/import-form-product"</script>--}}
-{{--                @endif--}}
                     @if(isset(Auth::user()->email))
                         <script>window.location="/main/successlogin";</script>
                     @endif

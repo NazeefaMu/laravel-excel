@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Console\Input\Input;
-use App\Exports\productExport;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -142,6 +141,14 @@ class ProductController extends Controller
     }
     function action(Request $request)
     {
+
+//
+//        if ($request->ajax()) {
+//            $data2 = Product::all();
+//            return Datatables::of($data2)
+//                ->addIndexColumn()
+//                ->make(true);
+//        }
         if($request->ajax())
         {
             if($request->action == 'edit')
@@ -157,15 +164,28 @@ class ProductController extends Controller
                     'brand'		=>	$request->brand,
 
                 );
-                DB::table('product')
+                $productData= DB::table('product')
                     ->where('sku', $request->sku)
                     ->update($data);
+
+                return DataTables::of($productData)->make(true);
+
+
+
+//                $data2 = Product::all();
+//                return Datatables::of($data2)
+//                ->addIndexColumn()
+//                ->make(true)
+//                ->where('sku', $request->sku)
+//                ->update($data);
+
             }
             if($request->action == 'delete')
             {
                 DB::table('product')
                     ->where('sku', $request->sku)
                     ->delete();
+
             }
             return response()->json($request);
         }

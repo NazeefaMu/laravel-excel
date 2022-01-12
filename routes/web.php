@@ -38,8 +38,7 @@ Route::get('/main', [App\Http\Controllers\MainController::class,'index']);
 Route::post('/main/checklogin', [App\Http\Controllers\MainController::class,'checklogin']);
 Route::get('/main/successlogin', [App\Http\Controllers\MainController::class,'successlogin']);
 
-
-Route::post('/import-form-product/action', [App\Http\Controllers\ProductController::class,'action'])->name('tabledit.action');
+Route::post('/import-form-product/action', [App\Http\Controllers\ProductController::class,'action'])->name('tabledit.action');//for edit and delete
 
 
 
