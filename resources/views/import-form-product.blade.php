@@ -22,10 +22,15 @@
 <section style="padding-top: 60px">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md-5 col-md-offset-1">
                 <h4 style="font-weight: bold">Import Excel to System</h4>
             </div>
-        </div>
+            <div class="col-md-5"  align="right">
+                <a class="btn btn-primary" href="{{ url('/main/logout') }}">Logout</a>
+            </div>
+            <div class="col-md-1"  align="right">
+            </div>
+            </div>
         <br>
         <div class="row">
             <div class="col-md-10 offset-md-1">
@@ -35,19 +40,10 @@
                     </div>
             @endif
 
-{{--                @if(isset(Auth::user()->email))--}}
-{{--                    <div class="alert alert-success">--}}
-{{--                        Successfully logged in--}}
-{{--                    </div>--}}
-{{--                    else--}}
-{{--                    <script>window.location="/import-form-product";</script>--}}
-{{--                @endif--}}
-
                 @if(isset(Auth::user()->email))
-                    <div class="alert alert-danger success-block">
+                    <div class="alert alert-success success-block">
                         <strong>Welcome {{ Auth::user()->email }}</strong>
                         <br />
-                        <a href="{{ url('/main/logout') }}">Logout</a>
                     </div>
                 @else
                     <script>window.location = "/main";</script>
