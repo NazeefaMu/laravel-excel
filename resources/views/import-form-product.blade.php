@@ -23,6 +23,9 @@
             color: white;
             padding: 15px;
         }
+        body{
+            font-family: Roboto;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +33,7 @@
     <div class="col-md-2" id="gray">
                     <h4 ><strong>{{ strtoupper(Auth::user()->name) }}</strong></h4>
                     <hr><br><br>
-                    <a href="import-form-product" style="color: white"><h3><i class="glyphicon glyphicon-shopping-cart"></i></h3>Product Management</a><br />
+                    <a href="import-form-product" style="color: white"><h4><i class="glyphicon glyphicon-shopping-cart"></i></h4>Product Management</a><br />
                     <br/><hr><br>
                     <a href="add-user" style="color: white"><h3><i class="glyphicon glyphicon-user"></i></h3> User Management</a><br />
                     <br /><hr><br>

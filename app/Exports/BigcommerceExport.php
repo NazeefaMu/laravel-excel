@@ -46,7 +46,7 @@ class BigcommerceExport implements FromCollection,WithHeadings,WithMapping
             $row->name,
             $row->product_type,
             $row->sku,
-            $row->null_column,
+            $row->bar_code,
             $row->brand,
             $row->null_column,
             $row->null_column,
@@ -59,16 +59,34 @@ class BigcommerceExport implements FromCollection,WithHeadings,WithMapping
             $row->null_column,
             $row->null_column,
             $row->null_column,
+            $row->weight,
             $row->null_column,
             $row->null_column,
             $row->null_column,
             $row->null_column,
             $row->null_column,
             $row->null_column,
-            $row->null_column,
-            $row->null_column,
+            $row->is_in_stock,
             $row->null_column,
             $row->categories,
+            $row->null_column,
+            $row->image1,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->image2,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->meta_title,
+            $row->meta_keywords,
+            $row->meta_description,
+
+
+
+
 
 
         ];

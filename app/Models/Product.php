@@ -35,7 +35,7 @@ class Product extends Model
         $records= DB::table('product')->select('sku','name','description','colour','size','group_name','bar_code','is_in_stock','b2c','brand','product_type'
             ,'categories','short_description','weight','price','special_price','meta_title','meta_keywords','meta_description','new_to_date',
             'display_product_options_in','country_of_manufacture','qty','vendor','tags','option1_name','option1_value','option2_name',
-            'option2_value','option3_name','option3_value','image1','image2','barcode','null_column','created_at','updated_at','domain_id')->where('domain_id','=',$domain_id)->get()->toArray();
+            'option2_value','option3_name','option3_value','image1','image2','image3','image4','tax_class_name','barcode','null_column','created_at','updated_at','domain_id')->where('domain_id','=',$domain_id)->get()->toArray();
         return $records;
     }
 

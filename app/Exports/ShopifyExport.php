@@ -45,7 +45,7 @@ class ShopifyExport implements FromCollection,WithHeadings,WithMapping
             $row->vendor,
             $row->tags,
             $row->null_column,
-            $row->group_name,
+            $row->option1_name,
             $row->option2_name,
             $row->option2_value,
             $row->option3_name,
