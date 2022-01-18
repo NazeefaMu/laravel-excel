@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
+
     <style>
         #gray {
             height: 1000px;
