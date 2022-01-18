@@ -54,7 +54,7 @@ class MagentoExport implements FromCollection,WithHeadings,WithMapping
             $row->product_type,
             $row->categories,
             $row->null_column,
-            $row->group_name,
+            $row->name,
             $row->description,
             $row->short_description,
             $row->weight,

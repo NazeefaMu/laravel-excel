@@ -39,7 +39,7 @@ class ShopifyExport implements FromCollection,WithHeadings,WithMapping
     public function map($row): array
     {
         return [
-            $row->group_name,
+            $row->name,
             $row->null_column,
             $row->null_column,
             $row->vendor,

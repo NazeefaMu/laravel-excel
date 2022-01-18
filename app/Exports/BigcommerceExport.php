@@ -43,7 +43,7 @@ class BigcommerceExport implements FromCollection,WithHeadings,WithMapping
         return [
             $row->null_column,
             $row->null_column,
-            $row->group_name,
+            $row->name,
             $row->product_type,
             $row->sku,
             $row->null_column,

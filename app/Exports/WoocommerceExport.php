@@ -69,7 +69,7 @@ class WoocommerceExport implements FromCollection,WithHeadings,WithMapping
             $row->null_column,
             $row->product_type,
             $row->sku,
-            $row->group_name,
+            $row->name,
             $row->null_column,
             $row->null_column,
             $row->null_column,

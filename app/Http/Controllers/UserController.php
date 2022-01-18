@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Domain;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
-
-class DomainController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +17,9 @@ class DomainController extends Controller
      */
     public function index()
     {
-
-        $domainData=Domain::all();
-        return view('domain')->with(['domainData'=>$domainData]);//if sending any data along with this then must add as parameter and pass for view method
-
+        //
+        $userdata=User::all();
+        return view('user')->with(['userdata'=>$userdata]);
     }
 
     /**
@@ -29,40 +27,12 @@ class DomainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
-        $name = $request->input('name');
-
-        DB::insert('insert into domain (domain_name) values(?)',[$name]);
-        return redirect()->back()->with('message', 'Records are inserted successfully!');
+        return view('user');
     }
-    function action(Request $request)
-    {
-        if($request->ajax())
-        {
-            if($request->action == 'edit')
-            {
-                $data = array(
-                    'domain_name'	=>	$request->domain_name,
-                );
-                $userData= DB::table('domain')
-                    ->where('id', $request->id)
-                    ->update($data);
 
-                return DataTables::of($userData)->make(true);
-
-            }
-            if($request->action == 'delete')
-            {
-                DB::table('domain')
-                    ->where('id', $request->id)
-                    ->delete();
-
-            }
-            return response()->json($request);
-        }
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -71,7 +41,43 @@ class DomainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $encodedPassword=Hash::make($password);
+
+        DB::insert('insert into users (name,email,password) values(?,?,?)',[$name,$email,$encodedPassword]);
+        return redirect()->back()->with('message', 'Records are inserted successfully!');
+    }
+    function action(Request $request)
+    {
+
+        if($request->ajax())
+        {
+            if($request->action == 'edit')
+            {
+
+                $data = array(
+                    'name'	=>	$request->name,
+                    'email'		=>	$request->email,
+
+                );
+                $userData= DB::table('users')
+                    ->where('id', $request->id)
+                    ->update($data);
+
+                return DataTables::of($userData)->make(true);
+
+            }
+            if($request->action == 'delete')
+            {
+                DB::table('users')
+                    ->where('id', $request->id)
+                    ->delete();
+
+            }
+            return response()->json($request);
+        }
     }
 
     /**

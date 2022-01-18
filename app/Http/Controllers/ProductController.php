@@ -142,13 +142,6 @@ class ProductController extends Controller
     function action(Request $request)
     {
 
-//
-//        if ($request->ajax()) {
-//            $data2 = Product::all();
-//            return Datatables::of($data2)
-//                ->addIndexColumn()
-//                ->make(true);
-//        }
         if($request->ajax())
         {
             if($request->action == 'edit')

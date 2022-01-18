@@ -42,7 +42,7 @@
             <div class="container-fluid">
                 <div class="row" >
                     <div class="col-md-5 col-md-offset-1">
-                        <h4 style="font-weight: bold">Domain Management</h4>
+                        <h4 style="font-weight: bold">User Management</h4>
                     </div>
                     <div class="col-md-5"  align="right">
                         <a class="btn btn-secondary" href="{{ url('/main/logout') }}">Logout</a>
@@ -71,14 +71,22 @@
                     <div class="col-md-10 offset-md-1">
                         <div class="card">
                             <div class="card-header">
-                                Add Domain
+                                Add User
                             </div>
                             <div class="card-body">
-                                <form method="post" enctype="multipart/form-data" action="{{route('domain.add')}}">
+                                <form method="post" enctype="multipart/form-data" action="{{route('user.add')}}">
                                     @csrf
                                     <div class="form-group" >
-                                        <label for="file">Domain name</label>
+                                        <label for="file">Name</label>
                                         <input type="text" name="name" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Email</label>
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Password</label>
+                                        <input type="text" name="password" class="form-control">
                                     </div>
                                     <button type="submit" class="btn btn-primary">&nbsp&nbspSubmit</button>
                                 </form>
@@ -88,16 +96,18 @@
                 </div>
                 <div class="row" style="padding-top: 60px" >
                     <div class="col-md-10 offset-md-1">
-                        <table class="table table-responsive `yajra-datatable" id="domain_table">
+                        <table class="table table-responsive `yajra-datatable" id="user_table">
                             <thead class="active">
                             <tr style="font-weight: bold" class="active">
                                 <td>Name</td>
+                                <td>Email</td>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($domainData as $domain)
+                            @foreach ($userdata as $user)
                                 <tr>
-                                    <td>{{ $domain->domain_name }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -126,12 +136,12 @@
             }
         });
 
-        $('#domain_table').Tabledit({
-            url:'{{ route("domain.action") }}',
+        $('#user_table').Tabledit({
+            url:'{{ route("user.action") }}',
             dataType:"json",
             columns:{
                 identifier:[0, 'id'],
-                editable:[[1, 'domain_name']]
+                editable:[[1, 'name'],[2, 'email']]
             },
             restoreButton:false,
             onSuccess:function(data, textStatus, jqXHR)
