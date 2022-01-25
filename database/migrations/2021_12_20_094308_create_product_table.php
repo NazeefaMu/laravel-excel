@@ -20,7 +20,7 @@ class CreateProductTable extends Migration
             $table->string('sku');
             $table->integer('domain_id')->nullable();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('colour')->nullable();
             $table->string('size')->nullable();
             $table->string('group_name')->nullable();
@@ -30,8 +30,8 @@ class CreateProductTable extends Migration
             $table->string('b2c')->nullable();
             $table->string('product_type')->nullable();
             $table->string('categories')->nullable();
-            $table->string('short_description')->nullable();
-            $table->integer('weight')->nullable();
+            $table->longText('short_description')->nullable();
+            $table->integer('weight')->nullable()->default(0);
             $table->decimal('price',10,2)->nullable();
             $table->decimal('special_price',10,2)->nullable();
             $table->text('meta_title')->nullable();
@@ -40,7 +40,7 @@ class CreateProductTable extends Migration
             $table->string('new_to_date')->nullable();
             $table->string('display_product_options_in')->nullable();
             $table->string('country_of_manufacture')->nullable();
-            $table->integer('qty')->nullable();
+            $table->integer('qty')->nullable()->default(0);
             $table->string('vendor')->nullable();
             $table->string('tags')->nullable();
             $table->text('option1_name')->nullable();

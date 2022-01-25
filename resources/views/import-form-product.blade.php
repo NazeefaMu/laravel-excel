@@ -38,7 +38,7 @@
                     <br/><hr><br>
                     <a href="add-user" style="color: white"><h3><i class="glyphicon glyphicon-user"></i></h3> User Management</a><br />
                     <br /><hr><br>
-                    <a href="#" style="color: white"><h3><i class="glyphicon glyphicon-tasks"></i></h3>Domain Management</a><br />
+                    <a href="add-domain" style="color: white"><h3><i class="glyphicon glyphicon-tasks"></i></h3>Domain Management</a><br />
                     <br/><hr>
     </div>
     <div class="col-md-10">
@@ -94,6 +94,15 @@
                                         @foreach($domains as $domain)
                                             <option value='{{ $domain->id }}'>{{ $domain->domain_name }}</option>
                                         @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="name">Choose option</label>
+                                        <select class="form-control" name="select_option">
+                                                <option value='1'>Insert all the columns</option>
+                                                <option value='2'>Update price,special price and stock</option>
+{{--                                                <option value='3'>Update all</option>--}}
                                         </select>
                                     </div>
                                     <br>

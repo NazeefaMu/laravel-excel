@@ -34,7 +34,6 @@ class MagentoExport implements FromCollection,WithHeadings,WithMapping
             'downloadable_links','downloadable_samples','configurable_variations','configurable_variation_labels'
         ];
     }
-
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -94,6 +93,7 @@ class MagentoExport implements FromCollection,WithHeadings,WithMapping
             $row->null_column,
             $row->null_column,
             $row->null_column,
+            $row->null_column,
             $row->qty,
             $row->null_column,
             $row->null_column,
@@ -103,8 +103,26 @@ class MagentoExport implements FromCollection,WithHeadings,WithMapping
             $row->null_column,
             $row->null_column,
             $row->null_column,
-            $row->null_column,
             $row->is_in_stock,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->null_column,
+            $row->image5,
+
             //The other columns are null,therefore no need to specify
 
         ];

@@ -18,7 +18,7 @@ class Product extends Model
     protected $table ="product";
     protected $fillable = ['sku','name','store_view_code','colour','size','bar_code','b2c','brand','attribute_set_code','product_type','categories','product_websites','group_name',
             'description','short_description','weight','product_online','tax_class_name','visibility','price','special_price','special_price_from_date','special_price_to_date',
-            'url_key','meta_title','meta_keywords','meta_description','base_image','base_image_label','small_image','small_image_label',
+            'url_key','meta_title','meta_keywords','meta_description','image1','image2','image3','image4','image5','base_image','base_image_label','small_image','small_image_label',
             'thumbnail_image','thumbnail_image_label','swatch_image','swatch_image_label','created_at','updated_at','new_from_date','new_to_date',
             'display_product_options_in','map_price','msrp_price','map_enabled','gift_message_available','custom_design',
             'custom_design_from','custom_design_to','custom_layout_update','page_layout','product_options_container',
@@ -35,7 +35,7 @@ class Product extends Model
         $records= DB::table('product')->select('sku','name','description','colour','size','group_name','bar_code','is_in_stock','b2c','brand','product_type'
             ,'categories','short_description','weight','price','special_price','meta_title','meta_keywords','meta_description','new_to_date',
             'display_product_options_in','country_of_manufacture','qty','vendor','tags','option1_name','option1_value','option2_name',
-            'option2_value','option3_name','option3_value','image1','image2','image3','image4','tax_class_name','barcode','null_column','created_at','updated_at','domain_id')->where('domain_id','=',$domain_id)->get()->toArray();
+            'option2_value','option3_name','option3_value','image1','image2','image3','image4','image5','image6','tax_class_name','barcode','null_column','created_at','updated_at','domain_id')->where('domain_id','=',$domain_id)->get()->toArray();
         return $records;
     }
 
