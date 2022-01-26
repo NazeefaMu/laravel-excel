@@ -14,6 +14,11 @@ use Maatwebsite\Excel\Concerns\WithUpserts;
 //using upsert working but with heading row not working
 class ProductImport implements ToCollection, WithHeadingRow
 {
+    private $domain_id;
+
+    function __construct($domain_id) {
+        $this->domain_id = $domain_id;
+    }
     /**
      * @param Collection $rows
      *
@@ -26,6 +31,7 @@ class ProductImport implements ToCollection, WithHeadingRow
                 {
                     $products = Product::create(
                         [
+                            'domain_id'=>$this->domain_id,
                             'sku' => $value['sku'],
                             'name' => $value['name'],
                             'description' => $value['description'],

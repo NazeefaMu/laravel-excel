@@ -109,29 +109,8 @@ class ProductController extends Controller
 
     public function importProducts(Request $request){
         $dom=$request->input('select_domain');
-        $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
-        $data = Excel::toArray(new ProductImport, $request->file)[0];
-
-        foreach ($data as $dataItem) {//get values in excel sheet
-            $collection = collect($dataItem);
-            $sku[] = (string)$collection['sku'];
-//            foreach ($sku as $id){
-////                print_r($id);
-//                DB::table('product')->where('sku', $id)->update(array('domain_id' => $dom));
-//            }
-
-            //DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
-
-//                Product::updateOrCreate(//create or update domain_id for each iteration and sku
-//                    [
-//                        'sku' => $collection['sku'],
-//                    ],
-//                    [
-//                        'domain_id' => $dom,
-//                    ]
-//                );
-        }
-
+        $excelResult=Excel::import(new ProductImport($dom),$request->file);//inserted to DB in ProductImport.php
+        $data = Excel::toArray(new ProductImport($dom), $request->file)[0];
         return redirect()->back()->with('message', 'Records are imported successfully!');
     }
 
@@ -140,9 +119,8 @@ class ProductController extends Controller
         $select_option=$request->input('select_option');
         print_r($select_option);
         if ($select_option==1){
-            $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
-            $data = Excel::toArray(new ProductImport, $request->file)[0];
-
+            $excelResult=Excel::import(new ProductUpdateAll,$request->file);//inserted to DB in ProductImport.php
+            $data = Excel::toArray(new ProductUpdateAll, $request->file)[0];
         }
         else{
             $excelResult=Excel::import(new ProductPricesImport,$request->file);//inserted to DB in ProductImport.php
