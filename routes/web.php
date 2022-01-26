@@ -29,6 +29,8 @@ Route::post('/import-product',[\App\Http\Controllers\ProductController::class,'i
 Route::get('/export-excel',[\App\Http\Controllers\ProductController::class,'exportIntoExcel']);
 Route::post('/import-form-product',[\App\Http\Controllers\ProductController::class,'exportIntoCSV'])->name('product.export');
 Route::post('/import-form-product/action', [App\Http\Controllers\ProductController::class,'action'])->name('tabledit.action');//for edit and delete
+Route::get('product-update', [App\Http\Controllers\ProductController::class,'importProductsUpdateView']);
+Route::post('product-update-all', [App\Http\Controllers\ProductController::class,'importProductsUpdate'])->name('productEdit.import');//for edit and delete
 
 //login
 Route::get('/main', [App\Http\Controllers\MainController::class,'index']);

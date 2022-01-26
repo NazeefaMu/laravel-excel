@@ -38,7 +38,7 @@ class ProductPricesImport implements ToCollection, WithHeadingRow
     public function uniqueBy()
     {
         // TODO: Implement uniqueBy() method.
-        return 'item_no';
+        return 'id';
     }
 }
 

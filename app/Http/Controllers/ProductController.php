@@ -8,6 +8,7 @@ use App\Exports\ShopifyExport;
 use App\Exports\WoocommerceExport;
 use App\Imports\ProductImport;
 use App\Imports\ProductPricesImport;
+use App\Imports\ProductUpdateAll;
 use App\Models\Domain;
 use App\Models\Product;
 use Illuminate\Cache\Repository;
@@ -114,6 +115,12 @@ class ProductController extends Controller
         return redirect()->back()->with('message', 'Records are imported successfully!');
     }
 
+    public function importProductsUpdateView(Request $request){
+        $domaindata=Domain::all();
+        $productdata = DB::select ('select * from product');
+        return view('product-update')->with(['productdata'=>$productdata,'domains'=>$domaindata]);
+    }
+
     public function importProductsUpdate(Request $request){
         $dom=$request->input('select_domain');
         $select_option=$request->input('select_option');
@@ -126,30 +133,7 @@ class ProductController extends Controller
             $excelResult=Excel::import(new ProductPricesImport,$request->file);//inserted to DB in ProductImport.php
             $data = Excel::toArray(new ProductPricesImport, $request->file)[0];
         }
-
-        print_r($data['sku']);
-
-//        foreach ($data as $dataItem) {//get values in excel sheet
-//            $collection = collect($dataItem);
-//            $sku[] = (string)$collection['sku'];
-//            foreach ($sku as $id){
-//                print_r($id);
-//                $User_Update = Product::where("sku", $id)->update(["domain_id" => $dom]);
-//            }
-//
-//            //DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
-//
-////                Product::updateOrCreate(//create or update domain_id for each iteration and sku
-////                    [
-////                        'sku' => $collection['sku'],
-////                    ],
-////                    [
-////                        'domain_id' => $dom,
-////                    ]
-////                );
-//        }
-
-        //return redirect()->back()->with('message', 'Records are imported successfully!');
+        return redirect()->back()->with('message', 'Records are updated successfully!');
     }
 
     public function exportIntoCSV(Request $request){

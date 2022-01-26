@@ -56,6 +56,15 @@
                 </div>
                 <br>
                 <div class="row">
+                    <div class="col-md-2 col-md-offset-1">
+                        <a href="#" class="btn btn-default">Upload excel</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="product-update" class="btn btn-default">Update excel</a>
+                    </div>
+
+                </div>
+                <div class="row">
                     <div class="col-md-10 offset-md-1">
                         @if(session()->has('message'))
                             <div class="alert alert-success">
