@@ -10,10 +10,15 @@ use App\Imports\ProductImport;
 use App\Imports\ProductPricesImport;
 use App\Models\Domain;
 use App\Models\Product;
+use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\SettingsProvider;
+use PhpOffice\PhpSpreadsheet\Settings;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Component\Console\Input\Input;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -104,49 +109,71 @@ class ProductController extends Controller
 
     public function importProducts(Request $request){
         $dom=$request->input('select_domain');
+        $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
+        $data = Excel::toArray(new ProductImport, $request->file)[0];
+
+        foreach ($data as $dataItem) {//get values in excel sheet
+            $collection = collect($dataItem);
+            $sku[] = (string)$collection['sku'];
+//            foreach ($sku as $id){
+////                print_r($id);
+//                DB::table('product')->where('sku', $id)->update(array('domain_id' => $dom));
+//            }
+
+            //DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
+
+//                Product::updateOrCreate(//create or update domain_id for each iteration and sku
+//                    [
+//                        'sku' => $collection['sku'],
+//                    ],
+//                    [
+//                        'domain_id' => $dom,
+//                    ]
+//                );
+        }
+
+        return redirect()->back()->with('message', 'Records are imported successfully!');
+    }
+
+    public function importProductsUpdate(Request $request){
+        $dom=$request->input('select_domain');
         $select_option=$request->input('select_option');
         print_r($select_option);
         if ($select_option==1){
             $excelResult=Excel::import(new ProductImport,$request->file);//inserted to DB in ProductImport.php
             $data = Excel::toArray(new ProductImport, $request->file)[0];
-            foreach ($data as $dataItem) {//get values in excel sheet
-                $collection = collect($dataItem);
-                $User_Update = Product::where("sku", $collection['sku'])->update(["domain_id" => $dom]);
-//                DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
-
-//                Product::updateOrCreate(//create or update domain_id for each iteration and sku
-//                    [
-//                        'sku' => $collection['sku'],
-//                    ],
-//                    [
-//                        'domain_id' => $dom,
-//                    ]
-//                );
-            }
 
         }
         else{
             $excelResult=Excel::import(new ProductPricesImport,$request->file);//inserted to DB in ProductImport.php
             $data = Excel::toArray(new ProductPricesImport, $request->file)[0];
-            foreach ($data as $dataItem) {//get values in excel sheet
-                $collection = collect($dataItem);
-                $User_Update = Product::where("sku", $collection['sku'])->update(["domain_id" => $dom]);
-
-                //DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
-
-//                Product::updateOrCreate(//create or update domain_id for each iteration and sku
-//                    [
-//                        'sku' => $collection['sku'],
-//                    ],
-//                    [
-//                        'domain_id' => $dom,
-//                    ]
-//                );
-            }
         }
 
-        return redirect()->back()->with('message', 'Records are imported successfully!');
+        print_r($data['sku']);
+
+//        foreach ($data as $dataItem) {//get values in excel sheet
+//            $collection = collect($dataItem);
+//            $sku[] = (string)$collection['sku'];
+//            foreach ($sku as $id){
+//                print_r($id);
+//                $User_Update = Product::where("sku", $id)->update(["domain_id" => $dom]);
+//            }
+//
+//            //DB::table('product')->where('sku', $collection['sku'])->update(array('domain_id' => $dom));
+//
+////                Product::updateOrCreate(//create or update domain_id for each iteration and sku
+////                    [
+////                        'sku' => $collection['sku'],
+////                    ],
+////                    [
+////                        'domain_id' => $dom,
+////                    ]
+////                );
+//        }
+
+        //return redirect()->back()->with('message', 'Records are imported successfully!');
     }
+
     public function exportIntoCSV(Request $request){
         $framework=$request->input('select_framework');
         $domain=$request->input('select_domain_export');
