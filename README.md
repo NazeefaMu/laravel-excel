@@ -13,6 +13,12 @@ Run following commands
 
 ## Product Management
 
+- Login : 
+  - User : dartx_admin@gmail.com
+  - Password : password
+
+## Product Management
+
 - Upload excel to system by mathcing relevant fields in given excel for system.
 - Choose framework and domain.
 - Select to update excel and choose whether all the fields need to be updated or only the prices and quantity
