@@ -18,10 +18,6 @@ Route::get('/', function () {
 });
 Route::resource('students','App\Http\Controllers\StudentController');
 
-//employee test
-Route::get('/import-form',[\App\Http\Controllers\EmployeeController::class,'importForm']);
-Route::post('/import',[\App\Http\Controllers\EmployeeController::class,'import'])->name('employee.import');
-Route::get('/import-form',[\App\Http\Controllers\EmployeeController::class,'index']);
 
 Route::get('/import-form-product',[\App\Http\Controllers\ProductController::class,'importFormProducts']);//main page
 //import file and send data to blade via view method
