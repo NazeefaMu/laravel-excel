@@ -36,9 +36,7 @@
                 @endif
 
                                 @if(isset(Auth::user()->email))
-                                    <div class="alert alert-success">
-                                        Successfully logged in
-                                    </div>
+                                   
                                     <script>window.location="/import-form-product";</script>
                                 @endif
             </div>

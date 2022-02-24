@@ -37,6 +37,7 @@ Route::get('/main', [App\Http\Controllers\MainController::class,'index']);
 Route::post('/main/checklogin', [App\Http\Controllers\MainController::class,'checklogin']);
 Route::get('/main/successlogin', [App\Http\Controllers\MainController::class,'successlogin']);
 Route::get('/main/logout', [App\Http\Controllers\MainController::class,'logout']);
+
 //user
 Route::get('add-user', [App\Http\Controllers\UserController::class,'create']);
 Route::post('add-user', [App\Http\Controllers\UserController::class,'store'])->name('user.add');
